@@ -1,0 +1,34 @@
+enum Status {
+    QI_DONG, TING_ZHI
+}
+
+enum ServiceType {
+	JI_BEN_ZHEN_LIAO, GONG_GONG_FU_WU
+}
+
+enum AppraiseType {
+	SHOU_DONG, ZI_DONG, BU
+}
+
+entity BasicService {
+	name String required  minlength(3) maxlength(20),
+    searchNo String  minlength(3) maxlength(10),
+    serviceType ServiceType required,
+    appraiseType AppraiseType required,
+    appraiseValue Integer min(0) max(100),
+    referencePrice Double min(0),
+    subsidyPrice Double min(0),
+    serviceCount Integer min(0),
+    canAppointment Boolean,
+    order Integer min(0),
+    status Status,
+    desc String maxlength(200)
+}
+
+paginate BasicService with pagination
+
+service BasicService with serviceClass
+
+skipClient BasicService
+
+filter BasicService
